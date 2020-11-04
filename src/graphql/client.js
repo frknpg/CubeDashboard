@@ -66,7 +66,7 @@ const toApolloItem = (i) => ({ ...i, __typename: 'DashboardItem' });
 
 const typeDefs = `
   type DashboardItem {
-    id: String!
+    id: String
     layout: String
     vizState: String
     name: String

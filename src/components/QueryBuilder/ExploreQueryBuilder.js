@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import * as PropTypes from 'prop-types';
-import { Row, Col, Divider, Card, Popover, Button } from 'antd';
+import { Row, Col, Divider, Card, Popover, Button, Input } from 'antd';
 import { SortAscendingOutlined, BorderInnerOutlined } from '@ant-design/icons';
 import { QueryBuilder } from '@cubejs-client/react';
 import ChartRenderer from '../ChartRenderer';
@@ -45,6 +45,7 @@ export default function ExploreQueryBuilder({
         updateOrder,
         pivotConfig,
         updatePivotConfig,
+        updateQuery,
       }) => {
         return (
           <Fragment>
@@ -173,6 +174,15 @@ export default function ExploreQueryBuilder({
                           Pivot
                         </Button>
                       </Popover>
+
+                      <Divider type="vertical" />
+
+                      <Input type="number"
+                        style={{ display: 'inline', width: '120px' }}
+                        placeholder="Limit"
+                        onChange={(e) => updateQuery({ limit: e.target.value })}
+                      />
+
                     </Col>
                   </Row>
                 </Card>
@@ -198,14 +208,14 @@ export default function ExploreQueryBuilder({
                     />
                   </Card>
                 ) : (
-                  <h2
-                    style={{
-                      textAlign: 'center',
-                    }}
-                  >
-                    Choose a measure or dimension to get started
-                  </h2>
-                )}
+                    <h2
+                      style={{
+                        textAlign: 'center',
+                      }}
+                    >
+                      Choose a measure or dimension to get started
+                    </h2>
+                  )}
               </Col>
             </Row>
           </Fragment>

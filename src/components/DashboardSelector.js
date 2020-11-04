@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Select, Button } from 'antd';
-import { v4 as uuidv4 } from 'uuid';
+import { Select } from 'antd';
 
 const { Option } = Select;
 
@@ -8,13 +7,13 @@ const getDashboardList = () =>
   JSON.parse(window.localStorage.getItem('dashboardList')) ||
   [];
 
-const DashboardSelector = ({ buttonVisible, onChange }) => {
+const DashboardSelector = ({ onChange, refresh, value, onClear }) => {
 
   const [dashboardList, setDashboardList] = useState([]);
 
   useEffect(() => {
     setDashboardList(getDashboardList());
-  }, []);
+  }, [refresh]);
 
   const onChangeDashboard = (value) => {
     const dashboard = dashboardList.find(item => item.id === value);
@@ -24,28 +23,18 @@ const DashboardSelector = ({ buttonVisible, onChange }) => {
     }
   };
 
-  const handleCreateDashboardButton = () => {
-    const newDashboard = { id: uuidv4(), dashboardItems: [] };
-    const items = [...dashboardList, newDashboard];
-    window.localStorage.setItem('dashboardList', JSON.stringify(items));
-    setDashboardList(getDashboardList());
-  };
-
   return (
-    <>
-      <Select
-        showSearch
-        style={{ width: 200 }}
-        placeholder="Select a dashboard"
-        optionFilterProp="children"
-        onChange={onChangeDashboard}
-      >
-        {dashboardList.map((item, index) => (
-          <Option value={item.id}>Dashboard {index + 1}</Option>
-        ))}
-      </Select>
-      {buttonVisible && <Button onClick={handleCreateDashboardButton} style={{ marginLeft: '8px' }} type="primary" >Add Dashboard</Button>}
-    </>
+    <Select
+      showSearch
+      style={{ width: 200 }}
+      placeholder="Select a dashboard"
+      optionFilterProp="children"
+      onChange={onChangeDashboard}
+    >
+      {dashboardList.map((item, index) => (
+        <Option value={item.id}>{item?.name}</Option>
+      ))}
+    </Select>
   );
 };
 

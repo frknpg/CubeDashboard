@@ -7,6 +7,7 @@ const Header = ({ location }) => (
   <Layout.Header
     style={{
       padding: '0 32px',
+      backgroundColor: '#0548a6'
     }}
   >
     <div
@@ -24,7 +25,7 @@ const Header = ({ location }) => (
           lineHeight: '54px',
         }}
       >
-        My Dashboard
+        VManageBoard
       </h2>
     </div>
     <Menu
@@ -33,6 +34,7 @@ const Header = ({ location }) => (
       selectedKeys={[location.pathname]}
       style={{
         lineHeight: '64px',
+        backgroundColor: '#0548a6'
       }}
     >
       <Menu.Item key="/explore">

@@ -58,7 +58,9 @@ const TitleModal = ({
       }}
       onCancel={() => setTitleModalVisible(false)}
     >
-      <DashboardSelector onChange={() => {}} buttonVisible={true}/>
+      <div style={{ marginBottom: '16px', display: 'block' }}>
+        {(!itemId) && <DashboardSelector onChange={() => {}}/>}
+      </div>
       <Input
         placeholder="Dashboard Item Name"
         value={finalTitle}
